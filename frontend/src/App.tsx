@@ -1,33 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import Header from './components/header'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const API_URL = "http://localhost:8000"
+
+  // let lastFlippedDate;
+  const [lastFlippedDate, setLastFlippedDate] = useState<string | null>(null);
+  const [totalFlips, setTotalFlips] = useState<number | null>(null);
+  const [totalHeads, setTotalHeads] = useState<number | null>(null);
+  const [totalTails, setTotalTails] = useState<number | null>(null);
+
+  const callAPI = async (apiEndpoint:string) => {
+    try {
+      const response = await fetch(`${API_URL}${apiEndpoint}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      return null;
+    }
+  }
+
+  useEffect(() => {
+    const APICalls = async() => {
+      const lastFlippedDateResponse: { dateFlipped: string }[] = await callAPI("/lastFlip");
+      setLastFlippedDate(lastFlippedDateResponse[0].dateFlipped.substring(0, 10));
+      console.log("Last Flipped Date", lastFlippedDate);
+
+      const totalFlipsResponse: { count: number }[] = await callAPI("/totalCount");
+      setTotalFlips(totalFlipsResponse[0].count);
+      console.log("Total Flips:", totalFlips);
+
+      const totalHeadsResponse: { count: number }[] = await callAPI("/headCount");
+      setTotalHeads(totalHeadsResponse[0].count);
+      console.log("Total Heads:", totalHeads);
+      
+      const totalTailsResponse: { count: number }[] = await callAPI("/tailCount");
+      setTotalTails(totalTailsResponse[0].count);
+      console.log("Total Tails:", totalTails);
+    }
+
+    APICalls();
+  }, []);
+
+  
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header lastFlippedDate={lastFlippedDate} totalFlips={totalFlips}/>
+      {/* <h1>List of coin flips: {}</h1> */}
     </>
   )
 }

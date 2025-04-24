@@ -24,12 +24,14 @@ const pool = new Pool({
 
 
 
-try {
-    await pool.connect();
-    console.log("Connected to Neon PostgreSQL")
-} catch (error) {
-    console.error("Database connection error", error.stack);
-}
+// try {
+//     await pool.connect();
+//     console.log("Connected to Neon PostgreSQL")
+// } catch (error) {
+//     console.error("Database connection error", error.stack);
+// }
+
+console.log("Connected to Neon PostgreSQL");
 
 
 

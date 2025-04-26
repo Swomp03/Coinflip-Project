@@ -1,0 +1,18 @@
+.Heads {
+    background-color: aqua;
+}
+
+.Tails {
+    background-color: aquamarine;
+}
+
+.Heads,
+.Tails {
+    text-align: center;
+    border-radius: 25px;
+    padding: 2vh;
+    font-family: "Alfa Slab One", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+}

@@ -16,6 +16,7 @@ function App() {
   }
 
   const [lastFlippedDate, setLastFlippedDate] = useState<string | null>(null);
+  const [lastFlippedTime, setLastFlippedTime] = useState<string | null>(null);
   const [totalFlips, setTotalFlips] = useState<number | null>(null);
   const [totalHeads, setTotalHeads] = useState<number | null>(null);
   const [totalTails, setTotalTails] = useState<number | null>(null);
@@ -37,7 +38,8 @@ function App() {
   const APICalls = async() => {
     const lastFlippedDateResponse: { dateFlipped: string }[] = await callAPI("/lastFlip");
     // setLastFlippedDate(lastFlippedDateResponse[0].dateFlipped.substring(0, 10));
-    setLastFlippedDate(lastFlippedDateResponse[0].dateFlipped.substring(0, 20));
+    setLastFlippedDate(lastFlippedDateResponse[0].dateFlipped.substring(0, 10));
+    setLastFlippedTime(lastFlippedDateResponse[0].dateFlipped.substring(11, 19));
     // console.log("Last Flipped Date", lastFlippedDate);
 
     const totalFlipsResponse: { count: number }[] = await callAPI("/totalCount");
@@ -125,7 +127,7 @@ function App() {
 
   return (
     <>
-      <Header lastFlippedDate={lastFlippedDate} totalFlips={totalFlips}/>
+      <Header lastFlippedDate={lastFlippedDate} lastFlippedTime={lastFlippedTime} totalFlips={totalFlips}/>
       <div className="coin-container">
         
         <div className='coin-section'>

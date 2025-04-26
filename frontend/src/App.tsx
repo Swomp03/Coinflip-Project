@@ -27,19 +27,19 @@ function App() {
     const APICalls = async() => {
       const lastFlippedDateResponse: { dateFlipped: string }[] = await callAPI("/lastFlip");
       setLastFlippedDate(lastFlippedDateResponse[0].dateFlipped.substring(0, 10));
-      console.log("Last Flipped Date", lastFlippedDate);
+      // console.log("Last Flipped Date", lastFlippedDate);
 
       const totalFlipsResponse: { count: number }[] = await callAPI("/totalCount");
       setTotalFlips(totalFlipsResponse[0].count);
-      console.log("Total Flips:", totalFlips);
+      // console.log("Total Flips:", totalFlips);
 
       const totalHeadsResponse: { count: number }[] = await callAPI("/headCount");
       setTotalHeads(totalHeadsResponse[0].count);
-      console.log("Total Heads:", totalHeads);
+      // console.log("Total Heads:", totalHeads);
       
       const totalTailsResponse: { count: number }[] = await callAPI("/tailCount");
       setTotalTails(totalTailsResponse[0].count);
-      console.log("Total Tails:", totalTails);
+      // console.log("Total Tails:", totalTails);
     }
 
     APICalls();
@@ -50,7 +50,16 @@ function App() {
   return (
     <>
       <Header lastFlippedDate={lastFlippedDate} totalFlips={totalFlips}/>
-      {/* <h1>List of coin flips: {}</h1> */}
+      <div>
+
+        <div></div>
+
+        <img src="null" alt="" />
+        
+        <div></div>
+
+      </div>
+      <button>Test</button>
     </>
   )
 }

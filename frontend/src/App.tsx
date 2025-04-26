@@ -5,6 +5,7 @@ import CoinCounter from './components/coinCounter'
 
 import headsCoin from './assets/Heads.png'
 import tailsCoin from './assets/Tails.png'
+import { motion } from 'motion/react'
 
 function App() {
 
@@ -157,7 +158,13 @@ function App() {
           />
           
         </div>
-        <button className='coin-button' onClick={handleFlip} disabled={flipping}>Flip</button>
+        <motion.button
+          className='coin-button'
+          onClick={handleFlip}
+          disabled={flipping}
+        >
+          Flip
+        </motion.button>
       </div>
       
     </>

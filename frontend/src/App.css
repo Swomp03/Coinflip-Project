@@ -70,4 +70,5 @@ body {
 
 .coin-button:hover {
     cursor: pointer;
+    scale: 1.1;
 }

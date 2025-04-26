@@ -1,9 +1,9 @@
 .Heads {
-    background-color: aqua;
+    background-color: rgb(64, 179, 179);
 }
 
 .Tails {
-    background-color: aquamarine;
+    background-color: rgb(61, 170, 134);
 }
 
 .Heads,
@@ -15,4 +15,6 @@
     font-weight: 400;
     font-style: normal;
     font-size: 22px;
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }

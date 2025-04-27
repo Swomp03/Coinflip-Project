@@ -1,21 +1,22 @@
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
-    background-color: rgb(216, 216, 216);
+    background-color: #fff2b7;
     top: 0;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin-top: -2vh;
     margin-left: -2vh;
     margin-right: -2vh;
     border-radius: 25px;
+    box-shadow: 5px 5px 5px;
 }
 
 #flipDate {
-    margin-right: 10vh;
+    margin-right: 2vh;
 }
 
 #totalFlippedCoins {
-    margin-left: 10vh;
+    margin-right: 8vh;
 }

@@ -7,6 +7,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 5vh;
+    margin-right: 6vh;
 }
 
 .coin {
@@ -16,7 +17,10 @@ body {
     transform-style: preserve-3d;
     transition: transform 1s;
     margin: 0 15vh;
+    cursor: pointer;
 }
+
+
 
 .coin-side {
     position: absolute;
@@ -33,6 +37,12 @@ body {
     height: 100%;
     object-fit: contain;
     filter: drop-shadow(5px 5px 5px);
+    transition: 0.2s;
+}
+
+.coin-side img:hover {
+    transform: rotate(5deg);
+    scale: 1.1;
 }
 
 .heads {
@@ -46,6 +56,7 @@ body {
 .flipping {
     transform: rotateY(1800deg);
     /* 5 full spins */
+    pointer-events: none;
 }
 
 .coin-section {
@@ -66,9 +77,24 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 25px;
     transition: 0.2s;
+    margin-left: 1vh;
 }
 
 .coin-button:hover {
     cursor: pointer;
     scale: 1.1;
+}
+
+.highlightSide {
+    scale: 1.3;
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
+    rotate: 10deg;
+    filter: drop-shadow(0px 0px 25px gold);
+}
+
+.noHighlight {
+    scale: 1.0;
+    transition: 0.2s;
+    transition-timing-function: ease-in-out;
 }

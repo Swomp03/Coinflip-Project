@@ -25,6 +25,9 @@ function App() {
   const [side, setSide] = useState<'heads' | 'tails'>('heads');
   const [flipping, setFlipping] = useState(false);
 
+  const [highlightHeads, setHighlightHeads] = useState(false);
+  const [highlightTails, setHighlightTails] = useState(false);
+
   const callAPI = async (apiEndpoint:string) => {
     try {
       const response = await fetch(`${API_URL}${apiEndpoint}`);
@@ -117,6 +120,21 @@ function App() {
 
       confirmAPIInsert();
       APICalls();
+      
+      switch(newSide){
+        case "heads":
+          setHighlightHeads(true);
+          break;
+        case "tails":
+          setHighlightTails(true);
+          break;
+        default:
+          console.log("Error in styling");
+      }
+      setTimeout(() => {
+        setHighlightHeads(false);
+        setHighlightTails(false);
+      }, 1000);
     }, 1000); // Match this with your animation duration
   };
 
@@ -124,48 +142,95 @@ function App() {
     APICalls();
   }, []);
 
+
+  const mainContainer = {
+    hidden: { opacity: 1, scale: 1 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.05,
+        staggerChildren: 0.25
+      }
+    }
+  };
+
+  const mainItem = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1
+    }
+  };
   
 
   return (
     <>
+      
       <Header lastFlippedDate={lastFlippedDate} lastFlippedTime={lastFlippedTime} totalFlips={totalFlips}/>
-      <div className="coin-container">
-        
+
+      <motion.ul
+        className="coin-container"
+        variants={mainContainer}
+        initial="hidden"
+        whileInView="visible"
+      >
+
         <div className='coin-section'>
           
-          <CoinCounter
-            coinSide="Heads"
-            count={totalHeads}
-          />
-
-          <div
-            className={`coin ${flipping ? 'flipping' : ''}`}
-            style={{
-              transform: `rotateY(${rotation}deg)`,
-            }}
+          <motion.div
+            className={highlightHeads ? "highlightSide": "noHighlight"}
+            variants={mainItem}
           >
-            <div className="coin-side heads">
-              <img src={headsCoin} alt="heads" />
-            </div>
-            <div className="coin-side tails">
-              <img src={tailsCoin} alt="tails" />
-            </div>
-          </div>
+            <CoinCounter
+              coinSide="Heads"
+              count={totalHeads}
+            />
+          </motion.div>
 
-          <CoinCounter
-            coinSide="Tails"
-            count={totalTails}
-          />
+          <motion.div
+            onClick={handleFlip}
+            variants={mainItem}
+          >
+            <div
+              className={`coin ${flipping ? 'flipping' : ''}`}
+              style={{
+                transform: `rotateY(${rotation}deg)`,
+              }}
+            >
+              <div className="coin-side heads">
+                <img src={headsCoin} alt="heads" />
+              </div>
+              <div className="coin-side tails">
+                <img src={tailsCoin} alt="tails" />
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className={highlightTails ? "highlightSide": "noHighlight"}
+            variants={mainItem}
+          >
+            <CoinCounter
+              coinSide="Tails"
+              count={totalTails}
+            />
+          </motion.div>
           
         </div>
-        <motion.button
-          className='coin-button'
-          onClick={handleFlip}
-          disabled={flipping}
+
+        <motion.div
+          variants={mainItem}
         >
-          Flip
-        </motion.button>
-      </div>
+          <motion.button
+            className='coin-button'
+            onClick={handleFlip}
+            disabled={flipping}
+          >
+            Flip!
+          </motion.button>
+        </motion.div>
+      </motion.ul>
       
     </>
   )

@@ -16,6 +16,8 @@ function App() {
     tails: tailsCoin
   }
 
+  let isCoinClickDisabled = false;
+
   const [lastFlippedDate, setLastFlippedDate] = useState<string | null>(null);
   const [lastFlippedTime, setLastFlippedTime] = useState<string | null>(null);
   const [totalFlips, setTotalFlips] = useState<number | null>(null);
@@ -62,6 +64,8 @@ function App() {
   const [rotation, setRotation] = useState(0);
 
   const handleFlip = async () => {
+
+    isCoinClickDisabled = true;
     setFlipping(true);
 
     console.log("Current Side:", side);
@@ -135,6 +139,8 @@ function App() {
         setHighlightHeads(false);
         setHighlightTails(false);
       }, 1000);
+
+      isCoinClickDisabled = false;
     }, 1000); // Match this with your animation duration
   };
 
@@ -178,7 +184,7 @@ function App() {
 
         <div className='coin-section'>
 
-
+          {/* For Mobile Devices */}
           <div className='mobileCoinCounter'>
             <motion.div
               className={`mobileHeadsCounter ${highlightHeads ? "highlightSide": "noHighlight"}`}
@@ -201,6 +207,7 @@ function App() {
             </motion.div>
           </div>
           
+          {/* For Desktop */}
           <motion.div
             className={`fullscreenCoinCounter ${highlightHeads ? "highlightSide": "noHighlight"}`}
             variants={mainItem}
@@ -212,7 +219,7 @@ function App() {
           </motion.div>
 
           <motion.div
-            onClick={handleFlip}
+            onClick={!isCoinClickDisabled ? handleFlip : undefined}
             variants={mainItem}
           >
             <div

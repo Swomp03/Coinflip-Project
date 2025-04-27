@@ -38,3 +38,18 @@
     justify-content: center;
     display: flex;
 }
+
+@media(max-width: 480px) {
+
+    .Heads,
+    .Tails {
+        padding: 1vh;
+        font-size: 12px;
+        margin-bottom: 5vh;
+        margin-top: -2vh;
+    }
+
+    .counterCoin {
+        height: 8vh;
+    }
+}

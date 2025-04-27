@@ -20,3 +20,16 @@
 #totalFlippedCoins {
     margin-right: 8vh;
 }
+
+@media(max-width: 480px) {
+    #flipDate {
+        font-size: 14px;
+        margin-right: 0vh;
+        margin-left: -3vh;
+    }
+
+    #totalFlippedCoins {
+        font-size: 16px;
+        margin-right: 5vh;
+    }
+}

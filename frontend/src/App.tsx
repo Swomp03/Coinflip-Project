@@ -177,9 +177,32 @@ function App() {
       >
 
         <div className='coin-section'>
+
+
+          <div className='mobileCoinCounter'>
+            <motion.div
+              className={`mobileHeadsCounter ${highlightHeads ? "highlightSide": "noHighlight"}`}
+              variants={mainItem}
+            >
+              <CoinCounter
+                coinSide="Heads"
+                count={totalHeads}
+              />
+            </motion.div>
+
+            <motion.div
+              className={`mobileTailsCounter ${highlightTails ? "highlightSide": "noHighlight"}`}
+              variants={mainItem}
+            >
+              <CoinCounter
+                coinSide="Tails"
+                count={totalTails}
+              />
+            </motion.div>
+          </div>
           
           <motion.div
-            className={highlightHeads ? "highlightSide": "noHighlight"}
+            className={`fullscreenCoinCounter ${highlightHeads ? "highlightSide": "noHighlight"}`}
             variants={mainItem}
           >
             <CoinCounter
@@ -208,7 +231,7 @@ function App() {
           </motion.div>
 
           <motion.div
-            className={highlightTails ? "highlightSide": "noHighlight"}
+            className={`fullscreenCoinCounter ${highlightTails ? "highlightSide": "noHighlight"}`}
             variants={mainItem}
           >
             <CoinCounter

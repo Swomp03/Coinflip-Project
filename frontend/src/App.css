@@ -98,3 +98,43 @@ body {
     transition: 0.2s;
     transition-timing-function: ease-in-out;
 }
+
+.mobileCoinCounter {
+    display: none;
+}
+
+@media(max-width: 480px) {
+    .coin {
+        width: 30vh;
+        height: 30vh;
+    }
+
+    .coin-button {
+        padding: 2vh 8vh;
+    }
+
+    .fullscreenCoinCounter {
+        display: none;
+    }
+
+    .mobileCoinCounter {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coin-section {
+        display: block;
+    }
+
+    .mobileHeadsCounter {
+        margin-right: 2vh;
+    }
+
+    .mobileTailsCounter {
+        margin-left: 2vh;
+    }
+
+    .highlightSide {
+        scale: 1.1;
+    }
+}

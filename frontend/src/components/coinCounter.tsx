@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import './styles/coinCounter.css'
 
 import headsCoin from '../assets/Heads.png'

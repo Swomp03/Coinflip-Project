@@ -12,10 +12,10 @@ function App() {
   // const API_URL = "http://localhost:8000"
   const API_URL = "https://coinflipapi.robertliao.ca"
 
-  const coinImages = {
-    heads: headsCoin,
-    tails: tailsCoin
-  }
+  // const coinImages = {
+  //   heads: headsCoin,
+  //   tails: tailsCoin
+  // }
 
   let isCoinClickDisabled = false;
 

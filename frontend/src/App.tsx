@@ -9,7 +9,8 @@ import { motion } from 'motion/react'
 
 function App() {
 
-  const API_URL = "http://localhost:8000"
+  // const API_URL = "http://localhost:8000"
+  const API_URL = "https://coinflipapi.robertliao.ca"
 
   const coinImages = {
     heads: headsCoin,
